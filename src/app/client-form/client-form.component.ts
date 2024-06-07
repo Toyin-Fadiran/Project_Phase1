@@ -3,6 +3,7 @@ import { Client } from '../client';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
+
 @Component({
   selector: 'app-client-form',
   standalone: true,
@@ -22,6 +23,7 @@ export class ClientFormComponent {
     this.model = new Client(-1, 'John Doe', 'john@doe.com', '123 Main Street', '');
   }
   
+////////////////////////////////////////////////////////////////////
 
   onSubmit(){
     this.submitted = true;

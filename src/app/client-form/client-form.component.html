@@ -1,5 +1,44 @@
 <!-- <p>client-form works!</p> -->
 
+<div class="container">
+
+<h1>Client Form</h1>
+<form (ngSubmit)="onSubmit()" #clientForm="ngForm">
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        
+        <input type="text" class="form-control" id="name" 
+        [(ngModel)]="model.name" name="name" required #name="ngModel">
+          <!-- <div>Name is Required</div>   -->
+          <div class="alert alert-danger" role="alert" [hidden]="name.valid || name.pristine">
+            Name is Required!
+          </div>
+      </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+      [(ngModel)]="model.email" name="email"  #email="ngModel" required email>
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      <div class="alert alert-danger" role="alert" [hidden]="email.valid || email.pristine">
+        Valid Email Structure is Required!
+        <!-- <span *ngIf="email.errors?.['required']">Email is required!</span>
+        <span *ngIf="email.errors?.['email']">Invalid email format!</span> -->
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password"  
+      [(ngModel)]="model.password" name="password" #password="ngModel" required minlength="6">
+      <div class="alert alert-danger" role="alert" [hidden]="password.valid || password.pristine">
+            Password Required: must be at least six characters.
+      </div>
+    </div>
+
+    
+    <button type="submit" class="btn btn-success" [disabled]="!clientForm.form.valid">Submit</button>
+  </form>
+
+</div>
 <!-- <div class="container">
     <h1>Client Form</h1>
     <form>
@@ -31,7 +70,7 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form (ngSubmit)="onSubmit()" #actorForm="ngForm">
+            <form (ngSubmit)="onSubmit()" #clientForm="ngForm">
                 {{ model | json }}
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
@@ -43,7 +82,7 @@
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
                     <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email"
-                        [(ngModel)]="model.email" required>
+                        [(ngModel)]="model.email" required #email="ngModel">
                     <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
                 </div>
                 <p>TODO: remove this: {{model.email}}</p>
@@ -58,13 +97,13 @@
                     <label class="form-check-label" for="exampleCheck1">Check me out</label>
                 </div> -->
 
-                <button type="submit" [disabled]="!actorForm.form.valid" class="btn btn-primary">Submit</button>
+                <button type="submit" [disabled]="!clientForm.form.valid" class="btn btn-primary">Submit</button>
 
                 &nbsp;&nbsp;
                 <button type="button" class="btn btn-info" (click)="newClient()">New Client</button>
                 <em>without</em> reset
                 &nbsp;&nbsp;
-                <button type="button" class="btn btn-info" (click)="newClient(); actorForm.reset()">New Client</button>
+                <button type="button" class="btn btn-info" (click)="newClient(); clientForm.reset()">New Client</button>
                 <em>with</em> reset
             </form>
         </div>
