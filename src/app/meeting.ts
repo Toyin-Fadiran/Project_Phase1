@@ -1,7 +1,10 @@
 export class Meeting {
 
 
-    constructor(topic: string, numberOfPeople: number, startTime: Date) {
+    constructor
+    (topic: string, 
+        numberOfPeople: number, 
+        startTime: Date) {
 
     }
 }
