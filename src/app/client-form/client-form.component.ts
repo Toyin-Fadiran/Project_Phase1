@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Client } from '../client';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 
@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-client-form',
   standalone: true,
   //add your needed dependencies here for this particular component
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule,],
   templateUrl: './client-form.component.html',
   styleUrl: './client-form.component.css'
 })
@@ -25,9 +25,17 @@ export class ClientFormComponent {
   
 ////////////////////////////////////////////////////////////////////
 
-  onSubmit(){
-    this.submitted = true;
+  
+
+onSubmit(clientForm: NgForm){
+   // this.submitted = true; //redundant, as ngSubmit sets to true
     console.log(this.model);
+
+    this.model = new Client(-1, '', '', '', ''); // Reset model
+
+   
+    clientForm.resetForm();  // Reset the form using ngForm directive method
+    this.submitted = false; // Reset submitted flag
   }
 
   newClient() {
